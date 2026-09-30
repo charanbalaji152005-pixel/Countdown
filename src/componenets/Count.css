@@ -1,0 +1,890 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #010409;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+
+/* ==================================================
+   PARENT 1
+   TITLE
+================================================== */
+
+.countdown-title {
+
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  padding-top: 35px;
+
+  color: white;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #0b1824 0%,
+      #030811 48%,
+      #010308 100%
+    );
+}
+
+
+/* TITLE */
+
+.countdown-title h1 {
+
+  font-size: 26px;
+
+  letter-spacing: 8px;
+
+  color: #00ffff;
+
+  text-align: center;
+
+  text-shadow:
+    0 0 5px #00ffff,
+    0 0 15px #00ffff,
+    0 0 30px #00ffff;
+
+}
+
+
+/* TITLE LINE */
+
+.title-line {
+
+  width: 230px;
+
+  height: 1px;
+
+  margin: 13px auto;
+
+  background: #00ffff;
+
+  box-shadow:
+    0 0 8px #00ffff,
+    0 0 20px #00ffff;
+
+}
+
+
+/* SUBTITLE */
+
+.countdown-title header p {
+
+  text-align: center;
+
+  font-size: 10px;
+
+  letter-spacing: 5px;
+
+  color: #71838e;
+
+}
+
+
+/* ==================================================
+   PARENT 2
+   EVERYTHING ELSE
+================================================== */
+
+.countdown-content {
+
+  width: 650px;
+
+  height: 650px;
+
+  margin-top: 15px;
+
+  position: relative;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  border: 1px solid rgba(0, 255, 255, 0.35);
+
+  border-radius: 20px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      rgba(0, 255, 255, 0.035),
+      rgba(2, 8, 16, 0.85)
+    );
+
+  box-shadow:
+
+    inset 0 0 40px rgba(0, 255, 255, 0.035),
+
+    0 0 15px rgba(0, 255, 255, 0.1),
+
+    0 0 60px rgba(0, 255, 255, 0.04);
+
+  overflow: hidden;
+  padding-bottom: 45px;
+}
+
+
+/* ==================================================
+   TIMER CIRCLE
+================================================== */
+
+.timer-circle {
+
+  width: 440px;
+
+  height: 440px;
+
+  position: relative;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  border-radius: 50%;
+
+}
+
+
+/* ==================================================
+   OUTER GLOW
+================================================== */
+
+.timer-circle::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 420px;
+
+  height: 420px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(0, 255, 255, 0.25);
+
+  box-shadow:
+
+    0 0 10px rgba(0, 255, 255, 0.35),
+
+    0 0 25px rgba(0, 255, 255, 0.2),
+
+    inset 0 0 25px rgba(0, 255, 255, 0.08);
+
+  animation: outerGlow 2s infinite alternate;
+}
+
+
+/* ==================================================
+   FIVE CIRCULAR LINES
+================================================== */
+
+.circle-line {
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--rotation));
+
+  border-radius: 50%;
+
+  border-style: solid;
+
+  border-top-color: rgba(0, 255, 255, 0.7);
+
+  border-right-color: transparent;
+
+  border-bottom-color: transparent;
+
+  border-left-color: transparent;
+
+  filter:
+
+    drop-shadow(0 0 4px #00ffff);
+}
+
+
+/* LINE 1 */
+
+.circle-one {
+
+  width: 410px;
+  height: 410px;
+
+  border-width: 2px;
+
+  --rotation: 0deg;
+}
+
+
+/* LINE 2 */
+
+.circle-two {
+
+  width: 375px;
+  height: 375px;
+
+  border-width: 2px;
+
+  --rotation: 72deg;
+}
+
+
+/* LINE 3 */
+
+.circle-three {
+
+  width: 340px;
+  height: 340px;
+
+  border-width: 3px;
+
+  --rotation: 144deg;
+}
+
+
+/* LINE 4 */
+
+.circle-four {
+
+  width: 305px;
+  height: 305px;
+
+  border-width: 2px;
+
+  --rotation: 216deg;
+}
+
+
+/* LINE 5 */
+
+.circle-five {
+
+  width: 270px;
+  height: 270px;
+
+  border-width: 2px;
+
+  --rotation: 288deg;
+}
+
+
+/* ==================================================
+   THICK CENTER COUNTDOWN LINE
+================================================== */
+
+.progress-ring {
+
+  --progress: 360deg;
+
+  position: absolute;
+
+  width: 330px;
+
+  height: 330px;
+
+  border-radius: 50%;
+
+  background:
+
+    conic-gradient(
+      from -90deg,
+      #00ffff 0deg,
+      #00ffff var(--progress),
+      rgba(0, 255, 255, 0.025) var(--progress),
+      rgba(0, 255, 255, 0.025) 360deg
+    );
+
+  /* Creates the thick circular line */
+
+  -webkit-mask:
+
+    radial-gradient(
+      circle,
+      transparent 70%,
+      #000 71%
+    );
+
+  mask:
+
+    radial-gradient(
+      circle,
+      transparent 70%,
+      #000 71%
+    );
+
+  filter:
+
+    drop-shadow(0 0 5px #00ffff)
+
+    drop-shadow(0 0 15px #00ffff);
+
+  transition:
+
+    background 0.8s linear;
+}
+
+
+/* ==================================================
+   MOVING BALL
+================================================== */
+
+.progress-ball {
+
+  position: absolute;
+
+  width: 330px;
+
+  height: 330px;
+
+  border-radius: 50%;
+
+  transition:
+
+    transform 0.8s linear;
+}
+
+
+.progress-ball span {
+
+  position: absolute;
+
+  top: -7px;
+
+  left: 50%;
+
+  width: 14px;
+
+  height: 14px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow:
+
+    0 0 5px #ffffff,
+
+    0 0 12px #00ffff,
+
+    0 0 25px #00ffff,
+
+    0 0 45px #00ffff;
+
+  animation:
+
+    ballPulse 0.8s infinite alternate;
+}
+
+
+/* ==================================================
+   EXTRA GLOW BALLS
+================================================== */
+
+.glow-ball {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  background: #00ffff;
+
+  box-shadow:
+
+    0 0 5px #00ffff,
+
+    0 0 15px #00ffff,
+
+    0 0 30px #00ffff;
+
+  animation:
+
+    ballPulse 1s infinite alternate;
+}
+
+
+.ball-one {
+
+  width: 7px;
+  height: 7px;
+
+  top: 35px;
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+
+.ball-two {
+
+  width: 5px;
+  height: 5px;
+
+  right: 60px;
+  top: 50%;
+
+  animation-delay: 0.3s;
+}
+
+
+.ball-three {
+
+  width: 6px;
+  height: 6px;
+
+  left: 65px;
+  bottom: 90px;
+
+  animation-delay: 0.6s;
+}
+
+
+/* ==================================================
+   CENTER
+================================================== */
+
+.timer-center {
+
+  position: relative;
+
+  z-index: 10;
+  transition: transform 0.8s ease;
+
+  width: 190px;
+
+  height: 190px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  background:
+
+    radial-gradient(
+      circle,
+      #091722 0%,
+      #02070d 72%,
+      #010409 100%
+    );
+
+  border: 1px solid rgba(0, 255, 255, 0.3);
+
+  box-shadow:
+
+    inset 0 0 30px rgba(0, 255, 255, 0.08),
+
+    0 0 20px rgba(0, 255, 255, 0.12);
+}
+
+
+/* NUMBER */
+
+.time-number {
+
+  font-size: 100px;
+
+  font-weight: 900;
+
+  line-height: 0.9;
+
+  color: #eaffff;
+
+  text-shadow:
+
+    0 0 5px #00ffff,
+
+    0 0 15px #00ffff,
+
+    0 0 30px #00ffff,
+
+    0 0 60px #00ffff;
+
+  animation:
+
+    numberPulse 1s infinite alternate;
+}
+
+
+/* SECONDS */
+
+.seconds {
+
+  margin-top: 8px;
+
+  font-size: 9px;
+
+  letter-spacing: 5px;
+
+  color: #00ffff;
+
+  text-shadow:
+
+    0 0 8px #00ffff;
+}
+
+
+/* SYSTEM STATUS */
+
+.system-status {
+
+  margin-top: 9px;
+
+  font-size: 7px;
+
+  letter-spacing: 2px;
+
+  color: #627783;
+}
+
+
+/* ==================================================
+   BUTTONS
+================================================== */
+
+.controls {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  z-index: 20;
+}
+
+
+.pause-button,
+.reset-button {
+
+  min-width: 125px;
+
+  padding: 12px 25px;
+
+  background: rgba(0, 255, 255, 0.02);
+
+  color: #00ffff;
+
+  border: 1px solid #00ffff;
+
+  border-radius: 6px;
+
+  font-size: 10px;
+
+  font-weight: bold;
+
+  letter-spacing: 3px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  box-shadow:
+
+    0 0 6px rgba(0, 255, 255, 0.35);
+}
+
+
+.pause-button:hover {
+
+  background: #00ffff;
+
+  color: #02040a;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+
+    0 0 10px #00ffff,
+
+    0 0 25px #00ffff,
+
+    0 0 50px #00ffff;
+}
+
+
+.reset-button {
+
+  color: #ff00ff;
+
+  border-color: #ff00ff;
+
+  box-shadow:
+
+    0 0 6px rgba(255, 0, 255, 0.35);
+}
+
+
+.reset-button:hover {
+
+  background: #ff00ff;
+
+  color: #02040a;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+
+    0 0 10px #ff00ff,
+
+    0 0 25px #ff00ff,
+
+    0 0 50px #ff00ff;
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+.system-footer {
+
+  position: absolute;
+
+  bottom: 22px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 8px;
+
+  letter-spacing: 3px;
+
+  color: #526975;
+}
+
+
+.footer-light {
+
+  width: 5px;
+
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #00ffff;
+
+  box-shadow:
+
+    0 0 5px #00ffff,
+
+    0 0 12px #00ffff;
+
+  animation:
+
+    ballPulse 1s infinite alternate;
+}
+
+
+/* ==================================================
+   ANIMATIONS
+================================================== */
+
+@keyframes ballPulse {
+
+  from {
+
+    transform: scale(0.65);
+
+    opacity: 0.45;
+
+  }
+
+  to {
+
+    transform: scale(1.5);
+
+    opacity: 1;
+
+  }
+
+}
+
+
+@keyframes numberPulse {
+
+  from {
+
+    transform: scale(1);
+
+  }
+
+  to {
+
+    transform: scale(1.04);
+
+  }
+
+}
+
+
+@keyframes outerGlow {
+
+  from {
+
+    opacity: 0.5;
+
+    box-shadow:
+      0 0 8px rgba(0, 255, 255, 0.2),
+      inset 0 0 15px rgba(0, 255, 255, 0.04);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    box-shadow:
+      0 0 20px rgba(0, 255, 255, 0.45),
+      0 0 45px rgba(0, 255, 255, 0.15),
+      inset 0 0 30px rgba(0, 255, 255, 0.1);
+
+  }
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 700px) {
+
+  .countdown-title {
+
+    padding-top: 20px;
+
+  }
+
+  .countdown-title h1 {
+
+    font-size: 17px;
+
+    letter-spacing: 5px;
+
+  }
+
+  .countdown-content {
+
+    width: 94%;
+
+    height: 600px;
+
+  }
+
+  .timer-circle {
+
+    width: 350px;
+
+    height: 350px;
+
+  }
+
+  .circle-one {
+
+    width: 330px;
+    height: 330px;
+
+  }
+
+  .circle-two {
+
+    width: 300px;
+    height: 300px;
+
+  }
+
+  .circle-three {
+
+    width: 270px;
+    height: 270px;
+
+  }
+
+  .circle-four {
+
+    width: 240px;
+    height: 240px;
+
+  }
+
+  .circle-five {
+
+    width: 215px;
+    height: 215px;
+
+  }
+
+  .progress-ring {
+
+    width: 275px;
+    height: 275px;
+
+  }
+
+  .progress-ball {
+
+    width: 275px;
+    height: 275px;
+
+  }
+
+  .timer-center {
+
+    width: 155px;
+    height: 155px;
+
+  }
+
+  .controls {
+    bottom: 18px;
+    gap: 10px;
+  }
+
+  .pause-button,
+  .reset-button {
+    min-width: 105px;
+    padding: 10px 16px;
+    font-size: 9px;
+  }
+
+  .time-number {
+
+    font-size: 75px;
+
+  }
+
+}
