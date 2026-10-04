@@ -4,9 +4,9 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
+   base: '/Countdown/',
+ plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] })
   ],
-  base: '/Countdown/',
 })
